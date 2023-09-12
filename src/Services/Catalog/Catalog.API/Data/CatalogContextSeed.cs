@@ -8,7 +8,7 @@ namespace Catalog.API.Data
     {
         public async static void SeedData(IMongoCollection<Product> productCollection)
         {
-            bool existProduct = productCollection.Find(p => true).Any();
+            bool existProduct = await productCollection.Find(p => true).AnyAsync();
 
             if (!existProduct)
             {

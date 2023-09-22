@@ -72,17 +72,13 @@ namespace Discount.API.Repositories
                 (_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
 
             var affected = await connection.ExecuteAsync
-                ("UPDATE Coupon" +
-                "SET" +
-                "ProductName = @ProductName," +
-                "Description = @Description," +
-                "Amount = @Amount" +
-                "WHERE Id = @Id",
+                ("UPDATE Coupon SET ProductName = @ProductName, Description = @Description, Amount = @Amount WHERE Id = @Id"
+                ,
                 new
                 {
                     ProductName = coupon.ProductName,
-                    Amount = coupon.Amount,
                     Description = coupon.Description,
+                    Amount = coupon.Amount,
                     Id = coupon.Id,
                 });
 
